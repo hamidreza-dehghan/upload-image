@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Image Upload</title>
+		<style>
+			/* CSS styles here */
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h2>Image Uploaded Successfully!</h2>
+			<img src="<%= imageUrl %>" alt="Uploaded Image" />
+			<p>
+				Image Link:
+				<a href="<%= imageUrl %>" target="_blank"><%= imageUrl %></a>
+			</p>
+			<p>Delete Image: <a href="<%= deleteUrl %>"><%= deleteUrl %></a></p>
+			<a href="../">Upload another image</a>
+		</div>
+	</body>
+</html>

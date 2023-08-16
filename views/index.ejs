@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Image Upload</title>
-		<style>
-			/* CSS styles here */
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<h2>Image Upload</h2>
-			<form
-				id="uploadForm"
-				enctype="multipart/form-data"
-				method="post"
-				action="upload"
-			>
-				<div class="form-group">
-					<input
-						type="file"
-						name="myImage"
-						id="myImage"
-						accept="image/*"
-					/>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn">Upload</button>
-				</div>
-			</form>
-			<div id="imagePreview" class="image-preview"></div>
-		</div>
-
-		<script>
-			// JavaScript code here
-		</script>
-	</body>
-</html>
+<form
+	id="uploadForm"
+	enctype="multipart/form-data"
+	method="post"
+	action="upload"
+>
+	<div class="form-group">
+		<input type="file" name="myImage" id="myImage" accept="image/*" />
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn">Upload</button>
+	</div>
+</form>
+<div id="imagePreview" class="image-preview"></div>

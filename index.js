@@ -27,6 +27,7 @@ const upload = multer({
 const app = express()
 
 // Set the view engine to EJS
+app.use(express.static(__dirname + '/public'))
 app.use(expressLayouts)
 app.set('layout', './layout')
 app.set('view engine', 'ejs')

@@ -3,6 +3,7 @@ const path = require('path')
 const express = require('express')
 const multer = require('multer')
 const fs = require('fs')
+const expressLayouts = require('express-ejs-layouts')
 const sharp = require('sharp')
 
 // Set storage engine for uploaded files
@@ -26,11 +27,14 @@ const upload = multer({
 const app = express()
 
 // Set the view engine to EJS
+app.use(express.static(__dirname + '/public'))
+app.use(expressLayouts)
+app.set('layout', './layout')
 app.set('view engine', 'ejs')
 
 // Set up routes
 app.get('/', (req, res) => {
-	res.render('index')
+	res.render('index', { title: 'Upload your image' })
 })
 
 app.post('/upload', (req, res) => {
@@ -86,7 +90,11 @@ app.post('/upload', (req, res) => {
 				const imageUrl = '/uploads/resized-' + req.file.filename
 				const deleteUrl = '/delete/resized-' + req.file.filename
 
-				res.render('upload', { imageUrl, deleteUrl })
+				res.render('upload', {
+					title: 'Image Uploaded Successfully!',
+					imageUrl,
+					deleteUrl,
+				})
 			}
 		}
 	})
@@ -96,9 +104,15 @@ app.get('/delete/:filename', (req, res) => {
 	const filePath = path.join(__dirname, 'uploads', req.params.filename)
 	fs.unlink(filePath, (err) => {
 		if (err) {
-			res.send('Error deleting file.')
+			res.render('delete', {
+				title: 'Delete image',
+				message: 'Error deleting file.',
+			})
 		} else {
-			res.send('File deleted successfully!')
+			res.render('delete', {
+				title: 'Delete image',
+				message: 'File deleted successfully!',
+			})
 		}
 	})
 })
